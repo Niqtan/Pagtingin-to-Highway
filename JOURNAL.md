@@ -702,7 +702,7 @@ Yay! The parts finally arrived
 Before going to Undercity, I just settled with just trying to solder all the missing parts. Not yet complete though!
 
 ![alt text](image-18.png)
-![alt text](image-19.png
+![alt text](image-19.png)
 
 Images 23-26. Parts and Soldering!
 

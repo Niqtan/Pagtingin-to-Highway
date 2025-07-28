@@ -694,3 +694,23 @@ Also, I've mainly wrapped up my unit testing (or prototyping) of each functional
 
 Hours spent: 7 hours
 
+# Entry 18 - 07-09-25 - Soldering remaining parts of the PCB
+Yay! The parts finally arrived
+
+![alt text](Screenshots/image-17.png)
+
+Before going to Undercity, I just settled with just trying to solder all the missing parts. Not yet complete though!
+
+![alt text](image-18.png)
+![alt text](image-19.png
+
+Images 23-26. Parts and Soldering!
+
+# Entry 19 - 07-27-25 - Finished Soldering em!
+Sorry this journal took so long! Been doing so much stuff. Finished soldering everything!
+
+![alt text](image-20)
+Image 27. Finished Soldering!
+
+# Entry 20 - 07-28-25
+

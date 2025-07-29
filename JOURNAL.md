@@ -711,7 +711,7 @@ Total hours spent: 3 hours
 # Entry 19 - 07-27-25 - Finished Soldering em!
 Sorry this journal took so long! Been doing so much stuff. Finished soldering everything!
 
-![alt text](Screenshots/image-20.png)
+![alt text](Screenshots/image-20.jpg)
 Image 27. Finished Soldering!
 
 Total hours spent: 4 hours

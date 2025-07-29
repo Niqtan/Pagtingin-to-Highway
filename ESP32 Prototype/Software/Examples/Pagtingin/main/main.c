@@ -71,7 +71,7 @@ static void gpio_init(void) {
     }
 }
 
-static void i2c_master_init() {
+void i2c_master_init() {
     // I2C configuration
     i2c_master_bus_config_t tof_mst_config = {
         .clk_source = I2C_CLK_SRC_DEFAULT,

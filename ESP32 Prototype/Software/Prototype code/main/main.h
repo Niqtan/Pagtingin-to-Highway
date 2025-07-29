@@ -20,12 +20,8 @@
 //WIFI
 #include "esp_wifi.h"
 
-//Bluetooth
-#include "esp_bt.h"
-
 
 //Error debugging
-#define LOG_LOCAL_LEVEL ESP_LOG_VERBOSE
 esp_err_t ret;
 const char *TAG;
 
@@ -42,7 +38,16 @@ typedef enum {
 //MUTE WHEN: Interrupt and turn everything off
 
 system_state_t current_state = STATE_IDLE;
-#define MUTE_DURATION
+
+//Task Handler 
+TaskHandle_t write_handler = NULL;
+TaskHandle_t read_handler = NULL;
+TaskHandle_t music_handler = NULL;
+
+//Task Flags
+bool should_measure = false;
+bool should_read = false;
+bool should_output = false;
 
 /* GPIO PINS */
 
@@ -90,11 +95,6 @@ QueueHandle_t uart_queue;
 
 /* I2C Pins */
 #include "driver/i2c_master.h"
-
-//Task Handler 
-TaskHandle_t write_handler = NULL;
-TaskHandle_t read_handler = NULL;
-
 //Handler for read and write operations
 i2c_master_dev_handle_t i2c_dev;
 
@@ -110,8 +110,6 @@ i2c_master_dev_handle_t i2c_dev;
 //I2S libraries
 #include "driver/i2s_std.h"
 
-//Task handler for playing beeps
-TaskHandle_t music_handler = NULL;
 
 #define LRCK_IO 32
 #define DOUT_IO 33
@@ -125,6 +123,9 @@ TaskHandle_t music_handler = NULL;
 #define BEEP_FREQ 2000
 #define AMPLITUDE 30000
 #define DURATION 0.5
+
+volatile bool buzz_flag = false;
+
 
 //Mapping the beeping sounds
 #define THRESHOLD 30

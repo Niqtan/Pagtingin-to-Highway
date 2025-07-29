@@ -33,7 +33,7 @@ esp_err_t ret;
 const char *TAG;
 
 //Distance
-volatile uint16_t distance_cm;
+uint16_t distance_cm = 0;
 
 /*
 ==============================================

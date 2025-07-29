@@ -9,8 +9,8 @@ DISCLAIMER: I had been working on this project even before Highway. I had a prot
 
 | Date started: March 17, 2025 
 
-Total hours spent (according to notes): 
-96 Hours
+Total hours spenta: 
+103 Hours
 
 
 P.S. These were all my notes taken in Obsidian. Some of them are linked to other pages.
@@ -706,11 +706,36 @@ Before going to Undercity, I just settled with just trying to solder all the mis
 
 Images 23-26. Parts and Soldering!
 
+Total hours spent: 3 hours
+
 # Entry 19 - 07-27-25 - Finished Soldering em!
 Sorry this journal took so long! Been doing so much stuff. Finished soldering everything!
 
-![alt text](image-20)
+![alt text](image-20.png)
 Image 27. Finished Soldering!
 
-# Entry 20 - 07-28-25
+Total hours spent: 4 hours
+
+# Entry 20 - 07-28-25 & 07-29-25 - Failures! Oh Failures!
+Welp, so in this journal, I realized how cooked I am. 
+
+Apparently the POGO pins I ordered werent a good fit for my ESP32-PICO-D4's pins.
+They are actually too small, literally.
+
+![alt text](image-21.png)
+Image 28. Small holes too much
+
+The reason why I actually need these pins is because I want to be able to program the chip using the ESP-PROG, which I didn't know actually had a FPC cable for a FPC connector lmao. (they didn't sell that in the digikey page).
+
+I tried getting away with some copper strips, but then I knew that was a bad idea since if they touched each other close enough, it would potentially short circuit.
+![alt text](image-22.png)
+Image 29. Trying out copper strips
+
+Yeah so even if I knew  that, I tried it. Guess what? It didn't short cirucit but
+the firmware just didn't flash as well. That means the TX and RX pins are having some major issues.
+
+Uhh,, so basically what I thought of was using enamel coated wires or magnetic wires since they don't really conduct with each other. I hope it goes well lol.
+
+Total hours spent: 7 hours
+
 

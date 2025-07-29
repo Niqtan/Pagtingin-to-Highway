@@ -1,30 +1,11 @@
 #include "main.h"
 
-
 //Move between states
 void idle_state() {
     esp_wifi_stop();
-    esp_bt_controller_disable();
 
-    xTaskCreatePinnedToCore(
-            write_to_tof,
-            "get_measurement",
-            2048,
-            NULL,
-            1,
-            &write_handler,
-            1
-    );
-
-    xTaskCreatePinnedToCore(
-            read_from_tof,
-            "read_measurement",
-            2048,
-            &distance_cm,
-            1,
-            &read_handler,
-            1
-        );
+    should_measure = true;
+    should_read = true;
     
     vTaskDelay(pdMS_TO_TICKS(100));
 
@@ -38,18 +19,9 @@ void idle_state() {
 
 void alert_state() {
     //Handle alert behavior
-    
-    xTaskCreatePinnedToCore(
-        i2s_write_beeps,
-        "Buzzer_beeps",
-        2048,
-        NULL,
-        1,
-        &music_handler,
-        1
-    );
-    //After:
+    should_output = true;
 
+    //Revert back to original state
     vTaskDelay(pdMS_TO_TICKS(100));
     current_state = STATE_MUTE;
 }
@@ -77,7 +49,7 @@ void mute_state() {
     current_state = STATE_IDLE;
 }
 
-esp_err_t gpio_init(void) {
+void gpio_init(void) {
      // GPIO PINS
      gpio_config_t io_configurations = {};
 
@@ -107,7 +79,7 @@ esp_err_t gpio_init(void) {
      }
  }
 
-esp_err_t uart_init() {
+void uart_init() {
     TAG = "UART";
     // UART Configuration
     uart_config_t uart_config = {
@@ -123,11 +95,10 @@ esp_err_t uart_init() {
     if ((ret = uart_set_pin(uart_port_num, UART_TX_PIN, UART_RX_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE)) != ESP_OK) {
         ESP_LOGE(TAG, "Error occured: %s\n", esp_err_to_name(ret));
     }
-
-    // UART Driver installation
-    uart_driver_install(uart_port_num, UART_BUFFER_SIZE, UART_BUFFER_SIZE, 0, &uart_queue, EVENT_QUEUE_SIZE);
-
-    ESP_LOGI(TAG, "UART initialized successfully!");
+    
+    if ((ret = uart_set_pin(uart_port_num, UART_TX_PIN, UART_RX_PIN, UART_PIN_NO_CHANGE, UART_PIN_NO_CHANGE)) != ESP_OK) {
+        ESP_LOGE(TAG, "Error occured: %s\n", esp_err_to_name(ret));
+    }
 }
 
 void i2c_reset() {
@@ -217,53 +188,57 @@ void i2c_reset() {
 }
 
 void write_to_tof(void *pvParameters) {
-    TAG = "I2C";
-    /* Main Purpose: Writing to turn on and off (loop this function) */ 
-    uint8_t write_buffer[2];
-    write_buffer[0] = 0x00;
-    //Start a single measurement
-    write_buffer[1] = 0x01;
+    if (should_measure == true) {
+        printf("Taking measurements...");
+        TAG = "I2C";
+        /* Main Purpose: Writing to turn on and off (loop this function) */ 
+        static uint8_t write_buffer[2];
+        write_buffer[0] = 0x00;
+        //Start a single measurement
+        write_buffer[1] = 0x01;
 
-    ret = i2c_master_transmit(i2c_dev, (uint8_t *)write_buffer, 2, 1000);
-    if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "Slave could not receive data. Error: %s\n", esp_err_to_name(ret));
-    }
-    else {
-        ESP_LOGI(TAG, "Slave received data");
+        ret = i2c_master_transmit(i2c_dev, (uint8_t *)write_buffer, 2, 1000);
+        if (ret != ESP_OK) {
+            ESP_LOGE(TAG, "Slave could not receive data. Error: %s\n", esp_err_to_name(ret));
+        }
+        else {
+            ESP_LOGI(TAG, "Slave received data");
     }
 
     vTaskDelay(pdMS_TO_TICKS(100));
+    }
 }
 
-uint16_t read_from_tof(void *pvParameters) {
-    TAG = "I2C";
-    distance_cm = (uint16_t *)pvParameters;
-    /* Main Purpose: Converting and getting distance measurements */
-    
-    //Register for getting result of the sensor
-    uint8_t read_buffer;
+void read_from_tof(void *pvParameters) {
+    if (should_read == true) {
+        printf("Reading measurements...");
+        TAG = "I2C";
+        /* Main Purpose: Converting and getting distance measurements */
+        
+        //Register for getting result of the sensor
+        uint8_t read_buffer;
 
-    //Keep looping until the the last three bits become 1
-    while ((read_buffer & 0x07) == 0) {
-        uint8_t reg_addr = 0x13;
-            
+        //Keep looping until the the last three bits become 1
+        while ((read_buffer & 0x07) == 0) {
+            uint8_t reg_addr = 0x13;
+                
+            i2c_master_transmit(i2c_dev, &reg_addr, 1, 1000);
+
+            i2c_master_receive(i2c_dev, &read_buffer, 1, 1000);
+        }
+
+        //Once the bits become 1, we want to get that measurement (read)
+        uint8_t reg_addr = 0x1E;
+        uint8_t raw_distance[2];
+
         i2c_master_transmit(i2c_dev, &reg_addr, 1, 1000);
+        i2c_master_receive(i2c_dev, raw_distance, 2, 1000);
 
-        i2c_master_receive(i2c_dev, &read_buffer, 1, 1000);
+        //Convert to the distance to cm
+        uint16_t distance_mm = (raw_distance[0] << 8) | raw_distance[1];
+        distance_cm = distance_mm / 10;
+        ESP_LOGI(TAG, "Distance: %dcm", distance_cm);
     }
-
-    //Once the bits become 1, we want to get that measurement (read)
-    uint8_t reg_addr = 0x1E;
-    uint8_t raw_distance[2];
-
-    i2c_master_transmit(i2c_dev, &reg_addr, 1, 1000);
-    i2c_master_receive(i2c_dev, raw_distance, 2, 1000);
-
-    //Convert to the distance to cm
-    uint16_t distance_mm = (raw_distance[0] << 8) | raw_distance[1];
-    distance_cm = distance_mm / 10;
-    ESP_LOGI(TAG, "Distance: %dcm", distance_cm);
-    return distance_cm;
 }
 
 
@@ -305,46 +280,90 @@ esp_err_t i2s_init() {
     return ESP_OK;
 }
 
-//Think of a new tone for the I2S
+int map(int distance, int starting_low, int starting_high, int ending_low, int ending_high) {
+    return (distance - starting_low) * (ending_high - ending_low) / (starting_high - starting_low) + ending_low;
+}
+
 
 static void i2s_write_beeps() {
-    /* Write bytes in order to sound beeps*/
-    TAG = "I2S";
+    if (should_output == true) {
+        printf("Outputting sound...");
+        /* Write bytes in order to sound beeps*/
+        TAG = "I2S";
 
-    //Buffer for storing samples
-    size_t written_bytes = 0;
-    int16_t NUM_SAMPLES = ((int)(SAMPLE_RATE * DURATION));
+        //Buffer for storing samples
+        size_t written_bytes = 0;
+        int16_t NUM_SAMPLES = ((int)(SAMPLE_RATE * DURATION));
 
-    //Stereo buffer for storing samples
-    int16_t *stereo_buf = malloc(NUM_SAMPLES * 2 * sizeof(int16_t));
+        //Stereo buffer for storing samples
+        int16_t *stereo_buf = malloc(NUM_SAMPLES * 2 * sizeof(int16_t));
 
-    int samples_a_cycle = SAMPLE_RATE / BEEP_FREQ;
+        int16_t *silent_buf = malloc(NUM_SAMPLES * 2 * sizeof(int16_t));
         
-    /*Since we're making a square wave for a harsh buffer sound,
-    we would need to alternate between the highest and lowest amplitude
-    */
-    for (int i = 0; i < NUM_SAMPLES; i++)  {
-        int amplitude = ((int)(i / samples_a_cycle) % 2 == 0) ? 30000: -30000;
+        int samples_a_cycle = SAMPLE_RATE / BEEP_FREQ;
+            
+        /*Since we're making a square wave for a harsh buffer sound,
+        we would need to alternate between the highest and lowest amplitude
+        */
+        for (int i = 0; i < NUM_SAMPLES; i++)  {
+            int amplitude = ((int)(i / samples_a_cycle) % 2 == 0) ? 30000: -30000;
 
-        stereo_buf[2 * i] = amplitude;
-        stereo_buf[2 * i + 1] = amplitude;
-    }
+            stereo_buf[2 * i] = amplitude;
+            stereo_buf[2 * i + 1] = amplitude;
 
-    while (1) {
-    //Write to existing channel
-    beep_delay = map(distance_cm, 0, THRESHOLD, BUZZER_MIN, BUZZER_MAX);
-    ESP_ERROR_CHECK(i2s_channel_write(tx_handler, &stereo_buf, sizeof(&stereo_buf), &written_bytes, 1000));
-    vTaskDelay(pdMS_TO_TICKS(beep_delay));
-    ESP_ERROR_CHECK(i2s_channel_write(tx_handler, &stereo_buf, sizeof(&stereo_buf), &written_bytes, 1000));
-    vTaskDelay(pdMS_TO_TICKS(beep_delay));
+            silent_buf[2 * i] = 0;
+            silent_buf[2 * i + 1] = 0;
+        }
 
-    ESP_LOGI(TAG, "You received a beep!");
-    vTaskDelay(pdMS_TO_TICKS(beep_delay));
+        buzz_flag = true;
+
+        if (buzz_flag == true) {
+        //Write to existing channel
+        beep_delay = map(distance_cm, 0, THRESHOLD, BUZZER_MIN, BUZZER_MAX);
+        ESP_ERROR_CHECK(i2s_channel_write(tx_handler, stereo_buf, NUM_SAMPLES * 2 * sizeof(int16_t), &written_bytes, 1000));
+        vTaskDelay(pdMS_TO_TICKS(beep_delay));
+        ESP_ERROR_CHECK(i2s_channel_write(tx_handler, silent_buf, NUM_SAMPLES * 2 * sizeof(int16_t), &written_bytes, 1000));
+        vTaskDelay(pdMS_TO_TICKS(beep_delay));
+
+        ESP_LOGI(TAG, "You received a beep!");
+        buzz_flag = false;
+        }
+
+        free(stereo_buf);
+        free(silent_buf);
     }
 }
 
-int map(int distance, int starting_low, int starting_high, int ending_low, int ending_high) {
-    return (distance - starting_low) * (ending_high - ending_low) / (starting_high - starting_low) + ending_low;
+void create_tasks() {
+    xTaskCreatePinnedToCore(
+            write_to_tof,
+            "get_measurement",
+            2048,
+            NULL,
+            1,
+            &write_handler,
+            1
+    );
+
+    xTaskCreatePinnedToCore(
+            read_from_tof,
+            "read_measurement",
+            2048,
+            NULL,
+            1,
+            &read_handler,
+            1
+        );
+
+        xTaskCreatePinnedToCore(
+        i2s_write_beeps,
+        "Buzzer_beeps",
+        2048,
+        NULL,
+        1,
+        &music_handler,
+        1
+    );
 }
 
 void app_main(void)
@@ -352,8 +371,9 @@ void app_main(void)
     //Initialize the protocols
     gpio_init();
     uart_init();
-    i2c_master_init();
+    i2c_init();
     i2s_init();
+    create_tasks();
 
     while (1) {
         switch(current_state) {

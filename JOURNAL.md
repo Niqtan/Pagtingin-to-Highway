@@ -701,8 +701,8 @@ Yay! The parts finally arrived
 
 Before going to Undercity, I just settled with just trying to solder all the missing parts. Not yet complete though!
 
-![alt text](image-18.png)
-![alt text](image-19.png)
+![alt text](Screenshots/image-18.png)
+![alt text](Screenshots/image-19.png)
 
 Images 23-26. Parts and Soldering!
 
@@ -711,7 +711,7 @@ Total hours spent: 3 hours
 # Entry 19 - 07-27-25 - Finished Soldering em!
 Sorry this journal took so long! Been doing so much stuff. Finished soldering everything!
 
-![alt text](image-20.png)
+![alt text](Screenshots/image-20.png)
 Image 27. Finished Soldering!
 
 Total hours spent: 4 hours
@@ -722,13 +722,13 @@ Welp, so in this journal, I realized how cooked I am.
 Apparently the POGO pins I ordered werent a good fit for my ESP32-PICO-D4's pins.
 They are actually too small, literally.
 
-![alt text](image-21.png)
+![alt text](Screenshots/image-21.png)
 Image 28. Small holes too much
 
 The reason why I actually need these pins is because I want to be able to program the chip using the ESP-PROG, which I didn't know actually had a FPC cable for a FPC connector lmao. (they didn't sell that in the digikey page).
 
 I tried getting away with some copper strips, but then I knew that was a bad idea since if they touched each other close enough, it would potentially short circuit.
-![alt text](image-22.png)
+![alt text](Screenshots/image-22.png)
 Image 29. Trying out copper strips
 
 Yeah so even if I knew  that, I tried it. Guess what? It didn't short cirucit but

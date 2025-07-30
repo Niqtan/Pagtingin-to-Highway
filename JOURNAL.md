@@ -738,4 +738,19 @@ Uhh,, so basically what I thought of was using enamel coated wires or magnetic w
 
 Total hours spent: 7 hours
 
+# Entry 21 - 07-30-25 - Wow more errors
+
+Lowkey, for this, I don't think i ain't comin back anymore.
+
+I found another, very critical error with my design. I actually findled with the NPM1100-CAAA-R7's sizes so that I could fit in vias and traces. Hence, when I actually got the PCB, it looked like that. Guess what, the NPM1100-CAAA-R7 didn't fit when I tried to reflow it.... HAHAHAHA im cooked.
+
+Here's what it looks like:
+![alt text](Screenshots/image-23.png)
+Image 30. Microscoped image of the error
+
+Here I thought, after testing continuity of my PCB (which was mostly correct), I would finally get this working. But nah. Guess we ain't ballin.
+
+Im gonna try putting some wires into it with enamel.
+
+Total hours spent: 3 hours
 

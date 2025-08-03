@@ -10,7 +10,7 @@ DISCLAIMER: I had been working on this project even before Highway. I had a prot
 | Date started: March 17, 2025 
 
 Total hours spenta: 
-113 Hours
+119 Hours
 
 
 P.S. These were all my notes taken in Obsidian. Some of them are linked to other pages.
@@ -754,3 +754,21 @@ Im gonna try putting some wires into it with enamel.
 
 Total hours spent: 3 hours
 
+# Entry 22 - 08-03-25 - Flashing the firmware!
+
+So I've finally connected the enamel wires to the respective pins of the ESP-PROG. 
+
+![alt text](Screenshots/image-24.jpg)
+Image 31. New Setup with Enamel Wires
+
+However, still shows an error that the serial data cannot be received or something. I'm pretty sure its just with the wiring.
+
+Bad news:
+
+My charging module, the NPM1100-CAAA-E-R7 officially cannot be connected to the PCB (see Entry 21: Image 30). The problem was the footprint which I findled with the sizes and stuff before sending it off to JLCPCB. Now, even after searching for solutions on how to connect those pads, i just can't seem to find a way. Deadbugging would be a waste of time since the enamelled wires would quickly be severed considering how thin it is. Hence, I decided to give up on that and not connect any charging modules. 
+
+Now, are there any side effects if I don't connect my charging module? For one, of course charging the battery would be risky since we wouldn't have any indicator at all, as well as protection. However, that doesn't mean that the system will not work. Good thing I did was that I COMPLETELY separated the regulators and DC-DC converters. That basically means that we absolutely can work this out if I don't take all the power from my battery.
+
+Honestly after this, if it flashes, I think that's pretty much the last stage of this project.
+
+Total hours spent: 5 hours (w soldeirng)

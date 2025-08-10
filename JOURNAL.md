@@ -10,7 +10,7 @@ DISCLAIMER: I had been working on this project even before Highway. I had a prot
 | Date started: March 17, 2025 
 
 Total hours spenta: 
-119 Hours
+125 Hours
 
 
 P.S. These were all my notes taken in Obsidian. Some of them are linked to other pages.
@@ -772,3 +772,21 @@ Now, are there any side effects if I don't connect my charging module? For one, 
 Honestly after this, if it flashes, I think that's pretty much the last stage of this project.
 
 Total hours spent: 5 hours (w soldeirng)
+
+# Entry 23 - 08-10-25 - Problems and Resolving
+
+So more problems still come huh? Well this one, I had problems with the FPC connector and the cable. Simply put, I ordered the wrong FPC connector which had the wrong features (it was supposed to have ZIF but it turned out to be solder retention). Yeah, so i tried that for a couple of days. Nope, didn't work out.
+
+![alt text](image-25.png)
+Image 32. FPC connector and Cable not fit together
+
+
+But anyways the solution I had in mind for that was that, what if I just connected each pin to each other individually with enamel wires. Yes, at the cost of a faulty design, we might be able to get this working, which i would love to see. So that is what I did. You can see the picture I attached.
+
+Honestly, this is probably my last resort then I could go on FINALLY testing my firmware.
+
+![alt text](image-26.png)
+Image 33. NewER Setup with Enamel Wires
+
+
+Total hours spent: 6 hours

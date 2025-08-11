@@ -10,7 +10,7 @@ DISCLAIMER: I had been working on this project even before Highway. I had a prot
 | Date started: March 17, 2025 
 
 Total hours spenta: 
-125 Hours
+128 Hours
 
 
 P.S. These were all my notes taken in Obsidian. Some of them are linked to other pages.
@@ -777,7 +777,7 @@ Total hours spent: 5 hours (w soldeirng)
 
 So more problems still come huh? Well this one, I had problems with the FPC connector and the cable. Simply put, I ordered the wrong FPC connector which had the wrong features (it was supposed to have ZIF but it turned out to be solder retention). Yeah, so i tried that for a couple of days. Nope, didn't work out.
 
-![alt text](image-25.png)
+![alt text](Screenshots/image-25.png)
 Image 32. FPC connector and Cable not fit together
 
 
@@ -785,8 +785,72 @@ But anyways the solution I had in mind for that was that, what if I just connect
 
 Honestly, this is probably my last resort then I could go on FINALLY testing my firmware.
 
-![alt text](image-26.png)
+![alt text](Screenshots/image-26.png)
 Image 33. NewER Setup with Enamel Wires
 
 
 Total hours spent: 6 hours
+
+# Entry 24 - 08-11-25 - No serial data received.
+
+AHHHH!!! I keep having the same problem!!
+
+![alt text](Screenshots/image-27.png)
+
+What does it mean to have your serial data rejected? Since I'm working with the ESP-PROG and the ESP32-PICO-D4 Chip, I obviously did not think this out. Of course flashing on a chip will be different on a dev board. But I swear I literally connected the important pins and then connected it in the PROG tab.
+
+![alt text](Screenshots/image-28.jpg)
+
+Even connecting power doesn't seem to solve the issue! I've been testing stuff with my multimeter. Guess what? Even my boost converter has problems. For some reason, it only outputs 3V even though I configured it mathematically to 5V.
+
+![alt text](Screenshots/image-29.png)
+
+There are honestly too much problems.
+
+# The Downfall
+
+Welp, I guess I realized it quite a bit late. I guess this all started with this one error:
+
+"COM4 failed to connect: Failed to connect to Espressif device: No serial data received.
+For troubleshooting steps visit: https://docs.espressif.com/projects/esptool/en/latest/troubleshooting.html
+Serial port COM3
+Connecting.......................
+COM3 failed to connect: Failed to connect to Espressif device: No serial data received.
+For troubleshooting steps visit: https://docs.espressif.com/projects/esptool/en/latest/troubleshooting.html"
+
+I thought I just needed to power it up. Perhaps using enamel wire? Huh? not working????????????????????????????????????.
+
+
+...
+
+..
+
+.
+
+I didn’t realize at the time that by switching the physical positions of the pads in the footprint, I was also changing the actual pin assignments of the MCU.
+I had this mistaken assumption that the manufacturer would somehow “internally” connect my rearranged pads to the correct pins on the chip.
+
+![alt text](Screenshots/image-30.png)
+
+This decision ended up being the breaking point of my PCB.
+By tinkering with the footprint layout, I unintentionally rerouted signals to the wrong pins entirely.
+In short, my footprint changes didn’t just make tracing easier, they fundamentally altered where every trace connected, which made the whole design unusable.
+
+
+# Project Conclusion
+
+Welp, I guess this is the end. This project reached a hard stop due to a critical design error in the PCB footprint for the ESP32-PICO-D4. In an attempt to make routing easier, I rearranged the physical pad positions in the footprint.
+
+# Key Lessons
+1. Never alter the functional pad order of an MCU footprint.
+
+2. Cross-verify pin mappings between the schematic symbol and footprint before starting PCB layout.
+
+# Next Steps
+- Redesign the PCB without ALL of the footprint mistakes
+- Add test pads and FPC connectors for future programming and debugging
+
+Total hours spent: 3 hours
+
+
+

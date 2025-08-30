@@ -6,6 +6,9 @@ Image 1. Pagtingin Prototype V1
 ## Prototype Demonstration
 https://www.youtube.com/watch?v=mGvRfI-a0dM
 
+# STATUS
+Unfortunately, the ordered PCB did not end up working.
+
 ## Project Aims
 
 The Pagtingin obstacle detecting glasses aims to help visually impaired people to easily detect obstacles in front of them through innovative glasses. While traditional walking sticks indeed help in detecting obstacles on the ground, they often fail to identify objects at chest or head level, such as low-hanging branches, open cabinets, or protruding signs. 

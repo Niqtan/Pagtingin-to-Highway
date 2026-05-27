@@ -2,7 +2,7 @@
 title: "Pagtingin V2"
 author: "Niq Suguitan"
 description: "A vision without action is called a daydream; but then again, action without a vision is called a nightmare."
-created_at: "2025-05-21"
+created_at: "2026-05-21"
 ---
 
 | Date started: May 21, 2026
@@ -55,3 +55,44 @@ Quick notes:
 - All the frames and the arms are made of plastic (NOT 3D PRINTED)
 - Flex PCBs are more of used to houses the sensors such as proximity and light
 
+![alt text](Screenshots/meta_glasses_teardown.png)
+So clearly, that teardown had my head not working anymore. I feel so overwhelemd redesigning all of this, so I think here are a couple of suggestions to make this project much less complex.
+
+1. Use a ESP32 Module instead of the chip
+2. Use templates from websites such us thingiverse and merge them with my current design
+3. Sanity check from people
+
+
+# Entry 01 - 05-27-26 - Starting with reducing the complexity of the project
+
+Okay, ever since I've found out how complex this project was, I've always kept pushing that all will be fine and that I'd be able to get this done easily.
+
+However, I don't think I can do that anymore. It's finally time.
+
+Here were some problems things that I thought would be increasing the complexity of my project:
+1. The microcontroller as a chip
+2. FFC connectors 
+
+First let's solve the problem of the microcontroller being a chip
+- Honestly, trading it for the size, I just dont think I'll be replacing the chip for a devboard or whatever
+
+FFC and FPC connectors
+- I think it would be better if I got flex pcbs so that it can travel within the temple, frame, and temple pretty easily.
+
+Studying the meta glasses teardown, apparently the way the two temples are connected to each other is this order:
+Any temple -> hinge -> front frame PCB (in between in the lenses)
+
+And then basically the front frame PCB connects both temple's pcb
+- I have no idea how I am going to ever reach that level of making a pcb
+
+For meta glasses the way they do is that:
+- Two halves of a temple are glued together
+
+According to GPT, the best way to connect the two boards is to use a Flex PCB.
+Another very bad problem is that the 3d print isnt hollow.
+
+![alt text](Screenshots/flex_pcb_entry_01.png)
+
+Also for today, I tried to restore my files.
+
+Anyways for the next journal, I plan to change up the 3D  Model. I think the PCB couldve been way better if I changed up that.

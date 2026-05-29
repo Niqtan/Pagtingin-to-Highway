@@ -96,3 +96,57 @@ Another very bad problem is that the 3d print isnt hollow.
 Also for today, I tried to restore my files.
 
 Anyways for the next journal, I plan to change up the 3D  Model. I think the PCB couldve been way better if I changed up that.
+
+# Entry 02 - 05-29-26 - Changing up the structure of Pagtingin
+
+I am  revisiting back my 3D models for the Pagtingin. And yeah, honestly making all of it connect like the Meta Glasses will be hard because
+
+Internal wiring is super complicated. I've tried that out in version 1 and I underestimated how complex it can be.
+
+Hence, I thought of a new idea. What if we truly made it so modular? What if, like earbuds, we have different electronic pods around the glasses and each of those pods would have different modules with different functionality?
+
+Introducing...
+
+Pagtingin V2! (Picture made by CHATGPT)
+
+![alt text](Screenshots/modular_approach.png)
+
+Okay so I believe this type of modular approach would not only reduce the complexity but also help a lot in debugging as it separates itself now in 3 zones.
+
+So yeah! Let's start with revising the schematic first by making them into different PCBs.
+
+So we'll be primarily separating the glasses into three parts:
+1. The Main Board module
+- This includes the brain (MCU)
+- The main logic (audio and stuff)
+- Also main regulation happens here
+
+2. The Power System 
+- This includes the battery itself and the power modules
+- Includes: battery, charger, regulations, and protetions
+
+3. Sensing module
+- Includes the input 
+- Facing front of the glasses
+
+4. Audio module
+- Includes the output modules 
+
+What's next is to sanity check first the electrical connections and then lets make that PCB for the electronic pods!
+
+Let's make this a cool ass project frfr
+
+Oh yeah apparently, I also have to decide on a system bus. It's basically how will each module communicate and transfer power. For communication, I'd use:
+
+
+Main Communication protocol
+I2C 
+
+Power rails
+And for power rails, I think I'd rather keep the current power rails right now. Maybe I'll modify them depending on it.
+
+And control / utility lanes
+- RESET BUTTON
+- INT
+- EN 
+(Would connect these to the power system)

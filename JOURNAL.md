@@ -150,3 +150,45 @@ And control / utility lanes
 - INT
 - EN 
 (Would connect these to the power system)
+
+# Entry 03 - 05-30-26 - More ideas + revising the schematic
+
+So I went on consulting with a friend about my glasses. He suggested that I use a power bank cable to represent the PCB. Then it would come from your pocket, routing to your glasses.
+
+I believe this one is quite intriguing because it opens up to the fact that its ergonomically better. Less weight and all.
+
+However, I still wanna go for the modular approach.
+
+Oh yah, for the main board here are some things I need to think of:
+1. How am I supposed to connect the modules together with the ESP32-PICO-D4 chip?
+- Perhaps I can use soem sort of things to breakout these pins?
+
+2. How am I supposed to program this? Perhaps its Pogo pins are exposed for me to program it with my current EPS32-PROG
+- Same situation with this
+
+![alt text](Screenshots/esp_prog.png)
+
+Also apparently you can pre-program chips so that's definitely interesting.
+- You can use a pogo-pin jig to program them so u dont have to put headers anymore
+- To do this you will need to expose the copper pads of those pins
+- This is the one i picked
+- Now it's only a matter of having a pogo pin jig
+And then you can also pre-program them by using a chip socket programmer   
+- Only do this if you're confident that your firmware will work
+
+In terms of the other pins, I have decided to use JST connectors so that it can make permanent connection
+- The cables will be inside the glasses frame, routing using the system bus to other modules in the system
+
+I decided to go with using FFC connectors so I can connect the modules with each other.
+
+There's like nuance here that I have to keep in mind and its that I should be using a system bus with the fixed amount of pins
+- That basically means that I will be placing let's say a FFC connector with a fixed number of pins. The same pins should be used as a FFC connector to the other modules but each nodule ONLY takes what it needs
+
+For example:
+
+Each module will have a 14 pin FFC connector. Even if a module doesnt need one of those signals, it will still have the same amount of pins. However, the signals it doesn't need will be NOT CONNECTED (NC)
+
+Anyways, I will be checking each hierarchical schematic and see what signals do each module need. And then, we can decide on how many pins the FFC Connector should have.
+
+Also just a reminder to take a look at LCSC so that we know what is in stock and if JLCPCB can do PCB assembly with that.
+

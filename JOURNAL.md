@@ -192,3 +192,64 @@ Anyways, I will be checking each hierarchical schematic and see what signals do 
 
 Also just a reminder to take a look at LCSC so that we know what is in stock and if JLCPCB can do PCB assembly with that.
 
+# Entry 04 - 06-02-26 - Implementing the FFC Connectors
+
+So here are the signals we primarily need that need to be universal with all modules:
+
+3.3V
+5V
+GND (Power)
+SDA (IO 21, For TOF Sensor)
+SCL (IO 22 For TOF Sensor)
+GND(Sensor)
+I2S_LRCK (IO32 for the PCM5102)
+I2S_DIN (IO33 for the PCM5102)
+I2S_BCK (IO27 for the PCM5102)
+I2S_SCK (IO26 for the PCM5102)
+I2S_XSMT (IO25 for the PCM5102)
+GND (Digital)
+SHND (IO23 for the PAM8403DR0)
+GND(Shield)
+LPN (IO18 for the TOF sensor)
+INT (IO19 for the TOF sensor)
+I2C_RST (IO4 for the TOF sensor)
+GND(Another shield)
+
+Hence, we need a FFC connector with at least 18 pins. I think that's the safest.
+
+
+Also, while listing down the pins I needed, something came to mind:
+"Is one Time of Flight sensor really fine?" I've been meaning to answer this question. There are pros and cons if I do only have one and two.
+
+One TOF Sensor:
+- Less coverage for the vision
+- In a sense "tunnel vision"
+
+Two TOF Sensors:
+- More coverage
+- More complexity
+
+One TOF sensor & 1 IMU
+- Best out of all the options
+- The TOF sensor detects an obstalce in front while the IMU refines that result into something much more specific
+- Basically the IMU gives the context of the situation while the TOF sensor sees
+
+So yeah it'll definitely be helpful if I had an IMU sensor giving context to the entire system of what's happening.
+
+Okay another thing would be:
+- Do we separate the things off the main board? Yes and no. What's better is that we separate the distance sensors from the main board so that we may make it more modular, and then we put the IMU sensor and  main board together so that they can both working together to produce data that the entire system needs.
+
+Okay here's the revised architecture:
+🧠 Main module (processing + power processing)
+🎧 Audio module left
+🎧 Audio module right
+📡 Sensor module(s)
+
+Here's an AI created image. Apologies if I make these with AI, but I believe it is faster to prototype if that's the case:
+![alt text](Screenshots/modular_architecture_revised.png)
+
+
+With that, I put 3 FFC connectors with 16 pins each on the main board.
+- I js gotta worry about the vertical clearance
+
+Next time im gonna pick out the best FFC connector.

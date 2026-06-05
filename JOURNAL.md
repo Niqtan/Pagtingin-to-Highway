@@ -253,3 +253,22 @@ With that, I put 3 FFC connectors with 16 pins each on the main board.
 - I js gotta worry about the vertical clearance
 
 Next time im gonna pick out the best FFC connector.
+
+# Entry 05 - 06-05-26 - Implementing the FFC Connectors (fr this time)
+
+ 
+Okay! so I've finally implemented the FFC connectors. Just thinking whether or not we should use 3 FFC Connectors for this.
+
+So introducing the AFC07-S18FCA-00:
+
+It is a 18 pinned FFC connector with a pitch of 0.5mm. It's a pretty standard FFC connector and I believe it'll be able to fit inside the glasses.
+
+Also I recently started using this new tool called easyeda2kicad. This helps with my workflow  ALOT. Like genuinely, I don't have to keep converting the files I see on easyeda to kicad with a web browser. It just does it on my terminal.
+
+Okay, so I've successfully integrated the FFC connectors to the different modules.
+
+![alt text](Screenshots/FFC_connector_main.png)
+![alt text](Screenshots/FFC_connector_sensor.png)
+![alt text](Screenshots/FFC_connector_audio.png)
+
+For the next session, I wanna try probing on the different electrical connections in the PCB from the version 1 of the project. I wanna see if the power system I created in version 1 works with the current system.

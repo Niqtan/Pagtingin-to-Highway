@@ -272,3 +272,13 @@ Okay, so I've successfully integrated the FFC connectors to the different module
 ![alt text](Screenshots/FFC_connector_audio.png)
 
 For the next session, I wanna try probing on the different electrical connections in the PCB from the version 1 of the project. I wanna see if the power system I created in version 1 works with the current system.
+
+# Entry 05 - 06-06-26 - Connecting the IMU to the MCU
+
+Okay so I'm just gonna do a small thing today and its connecting the IMU to the respective pins of the MCU.
+
+Yep. After following the datasheet, here is what I ended up with:
+
+Also learned that some things can be left unconnected depending on their purpose in the overall system. So for this BMI270, I left u unconnected ASC, ASD, OCSB, and OSDO because they were all used for auxilliary connections. And yeah, by name, "auxilliary" basically means support or extra features in this case.
+
+![alt text](Screenshots/IMU_schematic.png)

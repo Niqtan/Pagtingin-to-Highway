@@ -273,7 +273,7 @@ Okay, so I've successfully integrated the FFC connectors to the different module
 
 For the next session, I wanna try probing on the different electrical connections in the PCB from the version 1 of the project. I wanna see if the power system I created in version 1 works with the current system.
 
-# Entry 05 - 06-06-26 - Connecting the IMU to the MCU
+# Entry 06 - 06-06-26 - Connecting the IMU to the MCU
 
 Okay so I'm just gonna do a small thing today and its connecting the IMU to the respective pins of the MCU.
 
@@ -282,3 +282,33 @@ Yep. After following the datasheet, here is what I ended up with:
 Also learned that some things can be left unconnected depending on their purpose in the overall system. So for this BMI270, I left u unconnected ASC, ASD, OCSB, and OSDO because they were all used for auxilliary connections. And yeah, by name, "auxilliary" basically means support or extra features in this case.
 
 ![alt text](Screenshots/IMU_schematic.png)
+
+# Entry 07 - 06-10-26 - Back to revising the power system
+
+Okay so what I'm generally concerned for is my latching circuit. I'm not so sure if it works, even when I transferred it over to a new board.
+
+See the image below:
+
+![alt text](Screenshots/latching_circuit.png)
+
+Okay, so according to chatgpt, I asked the AI to do a sanity check of my latching circuit.
+
+To understand latching circuits, is to also core to understand feedback loops.
+- The core idea of a feedback loop is that the latching output is fed back in the input in order to keep itself alive (the system)
+
+The building blocks of a latching circuits are:
+- NOR or NAND gates
+- The SR latch is the simplest digital latch; it has two inputs which are SET (sets the output on) and Reset (sets the output off) 
+
+
+It basically said that I used the wrong type of MOSFET, an N-channel MOSFET, instead of a P-channel MOSFET.
+
+Just to explain it, an N-channel MOSFET is basically used for high-side switching.
+
+Here's an article detailing latching relay:
+https://www.instructables.com/The-Most-Efficient-Latching-Circuit/  
+
+So what is a relay?
+- Its an electromagnet controlling a switch
+
+That concludes some learning for today. my brain's ultimately fried

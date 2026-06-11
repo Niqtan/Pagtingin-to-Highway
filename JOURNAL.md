@@ -312,3 +312,28 @@ So what is a relay?
 - Its an electromagnet controlling a switch
 
 That concludes some learning for today. my brain's ultimately fried
+
+# Entry 08 - 06-11-26 - Revising the power system v2
+
+Okay so I wanna implement the knowledge above to revise my power system.
+
+In my latching circuit, I'm going to replace the the 2N7002BK transistor because its not the right type of transistor that I need.
+
+To do this we must first understand what is high-side switching and low-side switching
+- High-side switching is when the switch is placed between the power source and the load itself
+    - When the switch is closed, power flows into the load. When the switch is open, the connection to the power supply is cut off completely.
+- Low-side switching is when the switch is placed between the load and the ground
+    - The load is always physically connected to the power supply. The switch acts as a gatekeeper to the ground. When you close the switch, it completes the path to ground, allowing current to flow.
+
+And to get deeper into electronics and all of that, a MOSFET is basically a voltage-controlled valve
+- Gate (the lever)
+- Drain (Water coming in)
+- Source (water going out)
+
+So the way this works is that the gate gets a little bit of voltage. That mere presence of voltage creates an electric field that pulls the valve open.
+
+Also I needed to replace the NPM1100-CAAA-R7. Reason being, in version 1, it was so hard trying to hot plate such small component. Hence, I'm going to use a different IC now which does a similar functionality to replace that so that it makes assembling the main module a bit easier. 
+
+I'm going to replace it with a new charging module now. Plus maybe an LDO.
+
+I'll do that tomorrow 

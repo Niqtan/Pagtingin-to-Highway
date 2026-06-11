@@ -337,3 +337,5 @@ Also I needed to replace the NPM1100-CAAA-R7. Reason being, in version 1, it was
 I'm going to replace it with a new charging module now. Plus maybe an LDO.
 
 I'll do that tomorrow 
+
+![alt text](Screenshots/battery_controller_v1.png)

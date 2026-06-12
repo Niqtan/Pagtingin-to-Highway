@@ -339,3 +339,52 @@ I'm going to replace it with a new charging module now. Plus maybe an LDO.
 I'll do that tomorrow 
 
 ![alt text](Screenshots/battery_controller_v1.png)
+
+# Entry 09 - 06-12-26 - Revising the power system v3
+
+So to replace the NPM1100-CAAA-R7, let's go try finding a similar IC like it.
+
+So I found out about TP5400 and TP4056
+
+The key difference  between the two modules 
+- TP4056 simply takes in a 5V and safely charges the 3.7V
+- TP5400 can do both charging and do a boost regulator
+
+For this situation, having the TP4056 would be much more convenient. And then we pick a LDO.
+
+For an LDO we must first understand these terms:
+- Dropout voltage which basically is the minimum voltage that the LDO needs between the input and output to keep the output steady
+- Ground current is the electrical "tax" that the LDO charges just to stay powered on and working
+
+
+The LDO I picked was the XC6206P332MR
+- The reason being is that it fits the specs I need in an LDO. It dropouts to 3.3V and gets current at 200mA at most.
+(I just realized that I didn't need an LDO cuz i already had a buck converter lamo)
+
+Calculating for the PROG pin of the TP4056:
+RPROG = 1200/0.6
+
+RPROG = 2000 Ohms
+
+Some sources:
+- https://www.allaboutcircuits.com/technical-articles/choosing-the-right-ldo-beyond-the-basic-specs/
+
+Here's the revised schematic of the USB-C part of the power system:
+
+![alt text](Screenshots/USB_C_final.png)
+
+Okay next is I had AI sanity check my boost converter and buck converter to see if they were truly doing what I wanted them to do.
+
+So apparently my boost converter had some problems with values:
+- R9's value 47K -> 36K 
+- Only having one capacitor on the output capacitance bank
+
+For my buck converter:
+This part was really well done. Just to polish it I just had to replace some values:
+- C16's value is now 22pf
+- R16's value is now 360k 
+- R17's value is now 80.6K
+
+
+Everything should be good now!
+![alt text](Screenshots/power_schematic_final.png)

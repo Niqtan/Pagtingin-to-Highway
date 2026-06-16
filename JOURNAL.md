@@ -388,3 +388,42 @@ This part was really well done. Just to polish it I just had to replace some val
 
 Everything should be good now!
 ![alt text](Screenshots/power_schematic_final.png)
+
+# Entry 10 - 06-16-26 - Revising the audio schematic
+
+Okay so now I've also noticed another problem with what happened with version one.
+
+The speakers I bought weren't exactly THT that's why we couldnt really solder them onto the board. Well now, let's find for speakers.
+
+Of course, as always, the benchmark would always be the meta glasses. I am really fascinated by this technology.
+
+Found this little document by digikey:
+
+https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/7182/CE%20Speaker%20Assembly%20Overview.pdf
+
+![alt text](Screenshots/speakers_architecture.png)
+
+So apparently, we'd just have to stick with the old way. Connecting my speakers via a JST connector.
+
+Also begs another question:
+- How do i plan to wire the PAM8403 if I'm only using one speaker for one audio module? What about the OUT_R and OUT_L 
+
+Better idea instead of creating a new file:
+
+export a file first with one side of the speaker
+
+and then afterwards we can make changes to the schematic and then do it for the other side of the ear.
+
+So here's the final schematic of the audio schematic. Not much changes were made! Just wanted this to be sanity checked by Gemini.
+
+![alt text](Screenshots/revised_audio_schematic.png)
+
+Okay next thing that popped into my head:
+- DGND vs AGND
+
+So connecting to the DGND are for if you have noisy components such as
+and then AGND is the quiet part of the schematic in which you will connect components that are susceptible to a lot of noise, and a lot of noise makes the electrical connections inconsistent.
+
+But yeah, I'll be doing that star grounding in the PCB itself. Hopefully I don't forget.
+
+But anyways, that's pretty much it for this.

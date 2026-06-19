@@ -427,3 +427,35 @@ and then AGND is the quiet part of the schematic in which you will connect compo
 But yeah, I'll be doing that star grounding in the PCB itself. Hopefully I don't forget.
 
 But anyways, that's pretty much it for this.
+
+# Entry 11 - 06-16-26 - Making the PCBs for all the modules
+
+Okay so for this session, I tried brainstorming for a great shape for the PCB of each module. Turns out, if I want to make this be mounted on a pod, I'd have to just make it into a simple chamferred rectangle shape.
+
+Yep! Now, getting back to the routing. Here's the final routed pcb:
+
+![alt text](Screenshots/sensor_pcb.png)
+
+Sensor PCB! (Will add mounting holes)
+
+![alt text](Screenshots/revised_audio_schematic.png)
+
+Audio PCB!
+
+Also adding mounting holes for M2 screws in the PCB so we can attach it in the 3d model im going to do (the said pods)
+
+Okay so now for the main pcb.
+
+Let's make the chip to the front
+make the fpcs to the front?
+power stuff, at the back
+
+I actually forgot to add the pogo pins for programming the system. Actually no we don't need that hahahhaa.
+I'll just get a programming pogo pin testing jig so I can program it without having any permanent obstructions in the pcb.
+
+Here's how it looks like right now:
+
+![alt text](Screenshots/main_pcb_version_1.png)
+
+Should be finished tomorrow with the 3D Model design!
+

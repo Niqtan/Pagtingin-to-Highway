@@ -438,8 +438,7 @@ Yep! Now, getting back to the routing. Here's the final routed pcb:
 
 Sensor PCB! (Will add mounting holes)
 
-![alt text](Screenshots/revised_audio_schematic.png)
-
+![alt text](Screenshots/audio_module_pcb.png)
 Audio PCB!
 
 Also adding mounting holes for M2 screws in the PCB so we can attach it in the 3d model im going to do (the said pods)

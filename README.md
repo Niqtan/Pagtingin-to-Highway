@@ -9,6 +9,7 @@ Hence, Pagtingin aims to aid this limitation and ensure a safe journey of naviga
 Pagtingin 2.0 uses a modular approach instead of a tightly coupled design, making the system easier to iterate on and refine over time. Some design changes and iterations also have been made.
 
 ## Zine
+[alt text](PAGTINGIN_2.0.pdf)
 
 ## Prototype Concept
 ![alt text](CAD/fully_assembled_prototype_concept.png)

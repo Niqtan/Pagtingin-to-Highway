@@ -511,3 +511,7 @@ Then after that, I went and refined ALOT of stuff. I didn't have time to journal
 Yeah honestly, in the end I decided to just end it there for now.
 
 HAD A FRIEND check it but fallout submissions are gonna be due TT.
+# Entry 14 - 06-21-26 - Making the zine + submitting requirements
+
+Yep! Exactly what the title of the journal is.
+![alt text](Screenshots/magazine.png)

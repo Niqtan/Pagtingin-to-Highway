@@ -428,7 +428,7 @@ But yeah, I'll be doing that star grounding in the PCB itself. Hopefully I don't
 
 But anyways, that's pretty much it for this.
 
-# Entry 11 - 06-16-26 - Making the PCBs for all the modules
+# Entry 11 - 06-19-26 - Making the PCBs for all the modules
 
 Okay so for this session, I tried brainstorming for a great shape for the PCB of each module. Turns out, if I want to make this be mounted on a pod, I'd have to just make it into a simple chamferred rectangle shape.
 
@@ -458,3 +458,56 @@ Here's how it looks like right now:
 
 Should be finished tomorrow with the 3D Model design!
 
+
+# Entry 12 - 06-20-26 - Making the PCBs for all the modules
+
+Well yeah, as the journal title said, It's literally just mostly me routing. You can see the timelapse.
+
+Also decided on the orientation of this to be vertical:
+
+
+![alt text](Screenshots/pcb_orientation.png)
+
+Also caught this being two NPN transistors when its should be a NPN and a PNP transistor
+
+The PNP transistor is the main switch for making the power flood in
+The NPN transistor reaches out and then pulls down the handle to unlock the door.
+
+![alt text](Screenshots/caught_bug.png)
+
+Here's the main pcb:
+
+![alt text](Screenshots/main_pcb_initial.png)
+
+Routing WAS VERY tough with this one
+
+# Entry 13 - 06-21-26 - Making the CAD for the design
+Okay next would be the 3D model design...
+
+![alt text](Screenshots/objective_CAD.png)
+I want to replicate something like this. Not sure how but I'll make it work.
+
+Making pod number 1!
+![alt text](Screenshots/pod_01.png)
+
+it's surprisingly easy. You just have to really do offset and then put in the standoffs.
+
+I haven't combined it yet
+
+Next would be the temples of the glasses. You just create a 95 mm line to the right and then make a 45 degree angled line. Replace that line with a 3 point fix-point spline. Combine both and extrude!!
+
+Now go to the top-bottom view and create a three point spline that encomapsses the entire thing. Extrude then intersect it with the blocky temple to make it have a smooth look!
+
+Okay I will also be modifying the glasses temple to be according to a FPC cable 
+
+![alt text](Screenshots/sample_temples.png)
+
+Here's how the temples will be like. Will add snap rail thing.
+
+Oh yeah, apparently, that type of mechanism is called a sliding dove tail. I simply just used the flat side of the templse and then created some sort of rail with an extrusion of 1.2mm
+
+Then after that, I went and refined ALOT of stuff. I didn't have time to journal. But after this, it is most likely the files you see now.
+
+Yeah honestly, in the end I decided to just end it there for now.
+
+HAD A FRIEND check it but fallout submissions are gonna be due TT.

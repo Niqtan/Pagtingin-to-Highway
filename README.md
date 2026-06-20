@@ -1,13 +1,4 @@
-# Pagtingin (Obstacle Detecting Glasses)
-
-![Project Wearable](PicoPrototype/images/Glasses.jpg)
-Image 1. Pagtingin Prototype V1
-
-## Prototype Demonstration
-https://www.youtube.com/watch?v=mGvRfI-a0dM
-
-# STATUS
-Unfortunately, the ordered PCB did not end up working.
+# Pagtingin (Obstacle Detecting Glasses) 2.0
 
 ## Project Aims
 
@@ -15,50 +6,65 @@ The Pagtingin obstacle detecting glasses aims to help visually impaired people t
 
 Hence, Pagtingin aims to aid this limitation and ensure a safe journey of navigation. Whether indoors or outdoors, the device will be able to identify potential hazards through a Time-of-Flight sensor and send real-time audio feedback, which helps users to be much more confident and safe in the user's day-to-day lives.
 
-(+ I wanna try walking blindly sometimes)
+Pagtingin 2.0 uses a modular approach instead of a tightly coupled design, making the system easier to iterate on and refine over time. Some design changes and iterations also have been made.
 
-![Blind person walking happily](PicoPrototype/images/blind-man-people-with-disability-handicapped-person-everyday-life-visually-impaired-man-with-walking-stick-descending-steps-city-park.jpg)
+## Zine
 
-Courtesy of Freepik
+## Prototype Concept
+![alt text](CAD/fully_assembled_prototype_concept.png)
 
-## PCB Version
-![PCB front view](PCB/image.png)
-Image 2. PCB Front View
+## PCB 
 
-![PCB Back View](PCB/image-1.png)
-Image 3. PCB Back View
+### Main Module
 
-## Panelized Version
+![alt text](PCB/MainModule/main_pcb_front.png)
+Image 1. Main PCB Module Front View
 
-![alt text](PCB/Pagtingin%20Gerber%20Panelized/Untitled_Combined_Top.png)
-Image 3. Panelized PCB Front View
 
-![alt text](PCB/Pagtingin%20Gerber%20Panelized/Untitled_Combined_Bottom.png)
-Image 4. Panelized PCB Back View
+![alt text](PCB/MainModule/main_pcb_back.png)
+Image 2. Main PCB Module Backk View
+
+### Audio Module
+![alt text](PCB/AudioModule/audio_module_front)
+Image 3. Audio PCB Module Front View
+
+![alt text](PCB/AudioModule/audio_module_back.png)
+
+Image 4. Audio PCB Module Back View
+
+
+### Sensor Module
+
+![alt text](PCB/SensorModule/sensor_module_front.png)
+Image 5. Sensor PCB Module Front View
+
+![alt text](PCB/SensorModule/sensor_module_back.png)
+Image 6. Sensor PCB Module Back View
+
 
 ## CAD
 
-### Glasses Frame
+### Glasses Frame (with new hinges)
 
-![alt text](CADDesign/framefront.png)
-Image 5. Glasses Frame Front View
+![alt text](CAD/glasses_frame_front.png)
+Image 7. Glasses Frame Front View
 
-![alt text](CADDesign/frametop.png)
-Image 6. Glasses Frame Top View
+![alt text](CAD/glasses_frame_side.png)
+Image 8. Glasses Side View
 
-![alt text](CADDesign/frameback.png)
-Image 7. Glasses Frame Back View
+![alt text](CAD/glasses_frame_back.png)
+Image 9. Glasses Frame Back View
 
 ### Temples
 
-![alt text](CADDesign/templeside.png)
-Image 8. Glasses Temple Side View
+![alt text](CAD/temple_rail_side.png)
+Image 10. Glasses Rail Side View
 
-![alt text](CADDesign/templetop.png)
-Image 9. Glasses Temple Top View
+![alt text](CAD/temple_top_view.png)
+Image 11. Glasses Temple Top View
 
-![alt text](CADDesign/templebottom.png)
-Image 10. Glasses Temple Bottom View
+### Module Pod
+![alt text](CAD/module_pod.png)
 
 ## 3D Printing
 In terms of 3D printing, it might be better to print this in resin since the glasses frame will require precise dimensions. You may be able to print this in FDM, but it is recommended for the parameters to be as precise as possible.

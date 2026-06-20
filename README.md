@@ -73,13 +73,13 @@ In terms of 3D printing, it might be better to print this in resin since the gla
 ## BOM
 
 ### Main Module
-[PagtinginFinal.csv](Pagtingin_V2_Main.csv)
+[PagtinginFinal.csv](BOM.csv)
 
 ### Sensor Module
-[PagtinginFinal.csv](Pagtingin_V2_Sensor.csv)
+[PagtinginFinal.csv](BOM3.csv)
 
 ### Audio Module
-[PagtinginFinal.csv](Pagtingin_V2_Audio.csv)
+[PagtinginFinal.csv](BOM2.csv)
 
 
 ## Firmware

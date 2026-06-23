@@ -14,6 +14,7 @@ Pagtingin 2.0 uses a modular approach instead of a tightly coupled design, makin
 ## Prototype Concept
 ![alt text](CAD/fully_assembled_prototype_concept.png)
 
+
 ## PCB 
 
 ### Main Module
@@ -69,6 +70,31 @@ Image 11. Glasses Temple Top View
 
 ## 3D Printing
 In terms of 3D printing, it might be better to print this in resin since the glasses frame will require precise dimensions. You may be able to print this in FDM, but it is recommended for the parameters to be as precise as possible.
+
+## Making your own glasses!
+
+Phase 1: Ordering the PCB 
+
+For ordering this PCB, I would recommend using JLCPCB as the manufacturer. Use the PCBA assembly option and go through the interface!
+
+Here are some parameters you should know:
+
+Thickness: 0.8 mm or 1.0 mm
+Surface finish: HASL (with lead) or ENIG
+Copper weight 1 oz
+
+Phase 2: 3D Printing 
+
+Use your favorite slicer and 3D print it up! 
+
+Material for the temples: PETG / PLA
+Material for frame: Resin
+
+Once you 3D  print it, you can start assembling it like normal glasses!
+
+Phase 3: Firmware
+
+Flash the firmware with the test code provided.
 
 ## BOM
 
